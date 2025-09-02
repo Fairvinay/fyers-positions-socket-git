@@ -239,14 +239,15 @@ def market_feed():
             }
     
     # Start background websocket thread
-    #threading.Thread(target=start_websocket_ticker, args=(access_token,tickers)).start()
-    """ 
+    threading.Thread(target=start_websocket_ticker, args=(access_token,tickers)).start()
+      
     def event_stream():
         while True:
             msg = message_queue.get()
             if msg is None:
                 break
             yield msg
+    
     """
     tickers = ["NSE:IDEA-EQ", "NSE:RELIANCE-EQ", "NSE:TCS-EQ", "NSE:HDFCBANK-EQ"]
     def event_stream():
@@ -295,6 +296,7 @@ def market_feed():
 
         # wait 2 seconds before next batch
         time.sleep(2)
+    """
     return Response(event_stream(), mimetype="text/event-stream", headers=headers)
 
 
